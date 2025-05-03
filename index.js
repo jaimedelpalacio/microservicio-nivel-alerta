@@ -10,7 +10,11 @@ const BASE_IMG = 'https://www.interior.gob.es/opencms/pdf/prensa/nivel-de-alerta
 
 app.get('/nivel-alerta', async (req, res) => {
   try {
-    const response = await axios.get(URL_HTML);
+    const https = require('https');
+const agent = new https.Agent({ rejectUnauthorized: false });
+
+const response = await axios.get(URL_HTML, { httpsAgent: agent });
+
     const html = response.data;
 
     const regex = /Nivel-(\d)-NAA\.png/gi;
