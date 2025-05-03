@@ -21,8 +21,9 @@ app.get('/nivel-alerta', async (req, res) => {
 
     // Filtro: solo nombres que contienen "nivel" o "alerta"
     const candidatosValidos = matches.filter(m => {
-      const nombre = m[0].toLowerCase();
-      return nombre.includes("nivel") || nombre.includes("alerta");
+    const nombre = m[0].toLowerCase().split('/').pop();
+    return nombre.includes("nivel") || nombre.includes("alerta");
+;
     });
 
     if (candidatosValidos.length === 0) {
